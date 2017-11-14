@@ -1,0 +1,138 @@
+<!doctype HTML>
+
+
+    <head>
+        <title> Jason's Fidget Spinner Shop</title>
+
+        <style>
+            img {
+                width: 200px;
+
+            
+            }
+            input{
+                width:75px;
+            }
+        
+        div{
+            background-color:beige;
+            width:300px;
+        }
+        body{ 
+            background-color:rgb(43, 220, 226);
+
+        }
+    
+    
+       
+        </style>
+
+        <script>
+            /* Jason Mashieh
+             November 3rd 2017
+             Creating a website with stuff to sell. This website is going to sell 
+             fideget spinners.
+            */
+
+            
+        //global varibles 
+        
+            var pr1 = 5, wp1 = 2;
+            var pr2 = 10, wp2 = 4;
+            var pr3 = 15, wp3 = 6;
+            var tax_rate = 8.75;
+            var build = '';
+        function process(){
+            
+            //get items quantities
+            var q1 =parseInt( document.getElementById("q1").value)||0;
+            var q2 =parseInt( document.getElementById("q2").value)||0;
+            var q3 =parseInt( document.getElementById("q3").value)||0;
+
+            var customer_subtotal = (pr1*q1) + (pr2*q2) + (pr3*q3);
+            var company_subtotal = (wp1*q1) + (wp2*q2) + (wp3*q3);
+            var p = customer_subtotal - company_subtotal;
+            var tax = customer_subtotal*(tax_rate/100);
+            var shipping = 0;
+            var customer_total = customer_subtotal+tax+shipping;
+            /***CUSTOMER ORDER DETAILS
+                Subtotal:
+                Tax:
+                Shipping & Handling:
+                Customer Total:
+                ---------------------------
+                ORDER DETAILS FOR COMPANY
+                Total Items sold: 
+                Customer Subtotal:
+                Company Subtotal: 
+                Profit/Loss:
+            *///
+            build+='CUSTOMER ORDER DETAILS'
+            build+='\n'
+            build+='Subtotal:$'+customer_subtotal
+            build+='\n'
+            build+='Tax:$'+tax
+            build+='\n'
+            build+='Shipping % Handling:$'+shipping
+            build+='\n'
+            build+='Customer Total:$'+customer_total
+            build+='\n'
+            build+='---------------------------'
+            document.getElementById('output').innerText = build
+            if(customer_total < 100){
+                    shipping = 25;
+                }else if (customer_total > 100 && customer_total <= 200){
+                    shipping = 10;
+                }else shipping = 0;
+            
+            
+
+        }
+
+        
+        function initPrices(){
+            document.getElementById("span1").innerHTML = " $" +pr1;
+            document.getElementById("span2").innerHTML = " $" +pr2;
+            document.getElementById("span3").innerHTML = " $" +pr3;
+
+        }
+        </script>
+    
+    </head>
+
+    <body onload='initPrices()'>
+        <h1> Jason's Fidget Spinner Shop</h1>
+       <!--Item 1-->
+        <div>
+           <img src = "$5 fidget spinner.jpg"><br>
+           <p>This is the lowest quality fidget spinner we sell at our store. Now you can go around spinning that fidget spinner and be relaxed at the low low price of $5.</p><br>
+           price1 $ <span id='span1'></span>   x   ...
+           <input type="text" id="q1" placeholder="Enter #">
+        </div>
+
+        <!--Item 2-->
+       <div>
+           <img src = "$10 fidget spinner.jpg"><br>
+           <p>This fidget spinner is the next level of fun.Not only does it spin faster and longer than our lowest fidget spinner we sell but it also comes with a crazy cool design that all your friends and family are going to like.</p><br>
+           price2 $<span id='span2'></span>   x   ...
+           <input type="text" id="q2" placeholder="Enter #">
+        </div>
+        
+        <!--Item 3-->
+       <div>
+           <img src = "$15 fidget spinner.jpg"><br>
+           <p>This fidget is the highest quality we sell here at Jason's Fidget spinner shop.This top of the line fidget spinner is gold plated and comes with a cubic-zirconia sides.</p><br>
+           price3 $<span id='span3'></span>   x   ...
+           <input type="text" id="q3" placeholder="Enter #">
+        </div>
+
+        <!-- Payment and processing -->
+        <button onclick= "process()"> Process Order </button>
+        <br>
+        <div id="output"></div>
+
+
+
+    </body>
+
+</html>
